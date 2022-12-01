@@ -4,6 +4,10 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+// 以下追加
+apply plugin: 'war'
+war.baseName = 'websocket'
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -24,8 +28,10 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
+    // 以下追加
+    providedCompile 'javax.websocket:javax.websocket-api:1.1'
 }
 
 tasks.named('test') {
