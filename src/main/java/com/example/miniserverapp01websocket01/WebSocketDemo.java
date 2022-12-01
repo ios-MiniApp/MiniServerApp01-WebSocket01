@@ -1,7 +1,11 @@
 package com.example.miniserverapp01websocket01;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
+
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import javax.ws.rs.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Queue;
@@ -10,7 +14,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@ServerEndpoint("/WebSocketServer")
+@Component
+// @Path("/WebSocketServer")
+@ServerEndpoint(value = "/WebSocketServer")
 public class WebSocketDemo {
     // https://qiita.com/opengl-8080/items/7ca8484c8579d264e239#%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%8B%E3%82%89%E8%87%AA%E7%99%BA%E7%9A%84%E3%81%AB%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%82%92%E9%80%81%E4%BF%A1%E3%81%99%E3%82%8B
     // ここまでの実装方法だと、サーバー側から自発的にクライアントにメッセージを送ることができない。
@@ -21,11 +27,6 @@ public class WebSocketDemo {
     static {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleWithFixedDelay(WebSocketDemo::broadcast, 5, 5, TimeUnit.SECONDS);
-    }
-
-    public WebSocketDemo() {
-        super();
-        System.out.println("kota: WebSocketDemoのコンストラクタが呼ばれた");
     }
 
     @OnMessage

@@ -3,6 +3,7 @@ package com.example.miniserverapp01websocket01;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.servlet.annotation.WebServlet;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
